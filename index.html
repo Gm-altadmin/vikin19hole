@@ -221,7 +221,7 @@
       <!-- Nav linkleri — logo ile hizalı -->
       <nav style="display:flex;gap:24px;align-items:center">
         <a href="https://view.qrall.co/tr?tenantId=3a187eaf-8458-22db-d746-857e921c9528&channelId=3a187eaf-85f4-b43c-31c1-e27f53959945" target="_blank" class="menu-link" id="nav-menu" style="font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;opacity:.85;text-decoration:none;transition:.25s" onmouseover="this.style.color='#c9a45a';this.style.opacity='1'" onmouseout="this.style.color='#f1e8d4';this.style.opacity='.85'">MENÜ</a>
-        <a href="#rezervasyon" id="nav-rezervasyon" style="font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;opacity:.85;text-decoration:none;transition:.25s" onmouseover="this.style.color='#c9a45a';this.style.opacity='1'" onmouseout="this.style.color='#f1e8d4';this.style.opacity='.85'">REZERVASYON</a>
+        <a href="#" onclick="document.getElementById('rez-popup').style.display='flex';return false" id="nav-rezervasyon" style="font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;opacity:.85;text-decoration:none;transition:.25s" onmouseover="this.style.color='#c9a45a';this.style.opacity='1'" onmouseout="this.style.color='#f1e8d4';this.style.opacity='.85'">REZERVASYON</a>
       </nav>
 
       <!-- Dil butonları — altında boşluklu -->
@@ -236,7 +236,7 @@
 
     <nav id="main-nav" style="display:none;position:fixed;inset:0;background:rgba(13,11,8,.98);flex-direction:column;justify-content:center;align-items:center;gap:32px;z-index:9998">
       <a href="https://view.qrall.co/tr?tenantId=3a187eaf-8458-22db-d746-857e921c9528&channelId=3a187eaf-85f4-b43c-31c1-e27f53959945" target="_blank" class="menu-link" id="nav-menu-mob" style="font-family:'Inter',sans-serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;text-decoration:none">MENÜ</a>
-      <a href="#rezervasyon" id="nav-rezervasyon-mob" style="font-family:'Inter',sans-serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;text-decoration:none">REZERVASYON</a>
+      <a href="#" onclick="document.getElementById('rez-popup').style.display='flex';return false" id="nav-rezervasyon-mob" style="font-family:'Inter',sans-serif;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase;color:#f1e8d4;text-decoration:none">REZERVASYON</a>
       <div style="display:flex;gap:32px;margin-top:16px;padding-top:24px;border-top:1px solid rgba(244,237,224,.15)">
         <a href="https://www.instagram.com/viking19hole/" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;opacity:.9">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -524,14 +524,6 @@
       WhatsApp
     </a>
 
-    <!-- Telegram -->
-    <a href="https://t.me/+905322622773" target="_blank"
-      style="display:flex;align-items:center;gap:16px;background:#229ED9;color:#fff;padding:16px 24px;border-radius:4px;text-decoration:none;margin-bottom:12px;font-family:'Inter';font-size:.9rem;font-weight:500;transition:.3s"
-      onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      Telegram
-    </a>
-
     <!-- Telefon -->
     <a href="tel:+905322622773"
       style="display:flex;align-items:center;gap:16px;background:transparent;color:#f1e8d4;padding:16px 24px;border-radius:4px;text-decoration:none;border:1px solid rgba(244,237,224,.2);font-family:'Inter';font-size:.9rem;font-weight:400;transition:.3s"
@@ -770,7 +762,14 @@ setLang(currentLang);
   };
 
   nav.querySelectorAll('a').forEach(function(a){
-    a.onclick = function(){ nav.style.display = 'none'; };
+    var existing = a.onclick;
+    a.addEventListener('click', function(e){
+      nav.style.display = 'none';
+      if(existing) {
+        var result = existing.call(a, e);
+        if(result === false) e.preventDefault();
+      }
+    });
   });
 })();
 </script>

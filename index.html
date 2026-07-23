@@ -421,21 +421,27 @@
 
 <!-- ===== HAFTALIK PROGRAM - DİKEY DÖNEN ÇARK (TEK TEK OKUNAKLI) ===== -->
 <style>
-  .wheel-perspective{perspective:1200px;display:flex;justify-content:center;align-items:center;padding:0;position:relative;z-index:1;overflow:hidden;height:220px}
+  .wheel-perspective{perspective:1400px;display:flex;justify-content:center;align-items:center;padding:0;position:relative;z-index:1;overflow:hidden;height:400px}
   .wheel-spin{
-    position:relative;width:340px;height:140px;transform-style:preserve-3d;
+    position:relative;width:600px;height:300px;transform-style:preserve-3d;
     animation:wheelStep 28s cubic-bezier(.65,0,.35,1) infinite;
   }
   .wheel-card{
-    position:absolute;inset:0;
-    background:var(--bg-2);border:1px solid var(--gold);border-radius:6px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    position:absolute;inset:0;border-radius:10px;overflow:hidden;
+    background-size:cover;background-position:center;
+    display:flex;align-items:flex-end;justify-content:center;
     backface-visibility:hidden;-webkit-backface-visibility:hidden;
-    transform:rotateX(calc(var(--i) * 51.4286deg)) translateZ(190px);
-    box-shadow:0 10px 26px rgba(0,0,0,.5);
+    transform:rotateX(calc(var(--i) * 51.4286deg)) translateZ(340px);
+    box-shadow:0 16px 38px rgba(0,0,0,.55);
+    border:1px solid var(--gold);
   }
-  .wheel-card .gun{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.12em;color:var(--gold)}
-  .wheel-card .etkinlik{font-family:'Inter',sans-serif;font-weight:300;font-size:.88rem;color:var(--ink);opacity:.9}
+  .wheel-card .overlay{
+    width:100%;padding:20px 26px 22px;box-sizing:border-box;
+    background:linear-gradient(to top, rgba(13,11,8,.94) 0%, rgba(13,11,8,.6) 45%, transparent 100%);
+    display:flex;flex-direction:column;gap:5px;text-align:left;
+  }
+  .wheel-card .gun{font-family:'Cinzel',serif;font-size:1.15rem;letter-spacing:.12em;color:var(--gold)}
+  .wheel-card .etkinlik{font-family:'Inter',sans-serif;font-weight:300;font-size:.9rem;color:var(--ink);opacity:.95}
 
   @keyframes wheelStep{
     0%,10%   {transform:rotateX(0deg)}
@@ -448,8 +454,11 @@
     100%     {transform:rotateX(-360deg)}
   }
   @media(max-width:600px){
-    .wheel-spin{width:270px;height:120px}
-    .wheel-card .gun{font-size:.92rem}
+    .wheel-perspective{height:280px}
+    .wheel-spin{width:340px;height:180px}
+    .wheel-card{transform:rotateX(calc(var(--i) * 51.4286deg)) translateZ(210px)}
+    .wheel-card .overlay{padding:14px 18px 16px}
+    .wheel-card .gun{font-size:.95rem}
     .wheel-card .etkinlik{font-size:.78rem}
   }
 </style>
@@ -459,13 +468,13 @@
 
   <div class="wheel-perspective">
     <div class="wheel-spin">
-      <div class="wheel-card" style="--i:0"><span id="day0-gun" class="gun">PAZARTESİ</span><span id="day0-etkinlik" class="etkinlik">Canlı Müzik · 20:00</span></div>
-      <div class="wheel-card" style="--i:1"><span id="day1-gun" class="gun">SALI</span><span id="day1-etkinlik" class="etkinlik">Kokteyl Gecesi · 19:00</span></div>
-      <div class="wheel-card" style="--i:2"><span id="day2-gun" class="gun">ÇARŞAMBA</span><span id="day2-etkinlik" class="etkinlik">Driving Range Turnuvası · 17:00</span></div>
-      <div class="wheel-card" style="--i:3"><span id="day3-gun" class="gun">PERŞEMBE</span><span id="day3-etkinlik" class="etkinlik">DJ Performansı · 21:00</span></div>
-      <div class="wheel-card" style="--i:4"><span id="day4-gun" class="gun">CUMA</span><span id="day4-etkinlik" class="etkinlik">Şef'in Özel Menüsü · 19:00</span></div>
-      <div class="wheel-card" style="--i:5"><span id="day5-gun" class="gun">CUMARTESİ</span><span id="day5-etkinlik" class="etkinlik">Canlı Müzik · 20:30</span></div>
-      <div class="wheel-card" style="--i:6"><span id="day6-gun" class="gun">PAZAR</span><span id="day6-etkinlik" class="etkinlik">Aile Brunch · 11:00</span></div>
+      <div class="wheel-card" style="--i:0;background-image:url('images/wheel0.jpg')"><div class="overlay"><span id="day0-gun" class="gun">PAZARTESİ</span><span id="day0-etkinlik" class="etkinlik">Zarif Bir Akşam Yemeği</span></div></div>
+      <div class="wheel-card" style="--i:1;background-image:url('images/wheel1.jpg')"><div class="overlay"><span id="day1-gun" class="gun">SALI</span><span id="day1-etkinlik" class="etkinlik">Aile Buluşmaları</span></div></div>
+      <div class="wheel-card" style="--i:2;background-image:url('images/wheel2.jpg')"><div class="overlay"><span id="day2-gun" class="gun">ÇARŞAMBA</span><span id="day2-etkinlik" class="etkinlik">Çocuklara Özel Şov</span></div></div>
+      <div class="wheel-card" style="--i:3;background-image:url('images/wheel3.jpg')"><div class="overlay"><span id="day3-gun" class="gun">PERŞEMBE</span><span id="day3-etkinlik" class="etkinlik">DJ Gecesi · 21:00</span></div></div>
+      <div class="wheel-card" style="--i:4;background-image:url('images/wheel4.jpg')"><div class="overlay"><span id="day4-gun" class="gun">CUMA</span><span id="day4-etkinlik" class="etkinlik">Doğum Günü Kutlamaları</span></div></div>
+      <div class="wheel-card" style="--i:5;background-image:url('images/wheel5.jpg')"><div class="overlay"><span id="day5-gun" class="gun">CUMARTESİ</span><span id="day5-etkinlik" class="etkinlik">Özel Kutlamalar</span></div></div>
+      <div class="wheel-card" style="--i:6;background-image:url('images/wheel6.jpg')"><div class="overlay"><span id="day6-gun" class="gun">PAZAR</span><span id="day6-etkinlik" class="etkinlik">Evlilik Teklifi Anları</span></div></div>
     </div>
   </div>
 </section>
@@ -576,13 +585,13 @@ var translations = {
     'btn-menu-float': 'Menüyü Keşfet',
     'btn-rez-float': 'Rezervasyon Yap',
     'wheel-title': 'HAFTALIK PROGRAMIMIZ',
-    'day0-gun': 'PAZARTESİ', 'day0-etkinlik': 'Canlı Müzik · 20:00',
-    'day1-gun': 'SALI', 'day1-etkinlik': 'Kokteyl Gecesi · 19:00',
-    'day2-gun': 'ÇARŞAMBA', 'day2-etkinlik': 'Driving Range Turnuvası · 17:00',
-    'day3-gun': 'PERŞEMBE', 'day3-etkinlik': 'DJ Performansı · 21:00',
-    'day4-gun': 'CUMA', 'day4-etkinlik': "Şef'in Özel Menüsü · 19:00",
-    'day5-gun': 'CUMARTESİ', 'day5-etkinlik': 'Canlı Müzik · 20:30',
-    'day6-gun': 'PAZAR', 'day6-etkinlik': 'Aile Brunch · 11:00',
+    'day0-gun': 'PAZARTESİ', 'day0-etkinlik': 'Zarif Bir Akşam Yemeği',
+    'day1-gun': 'SALI', 'day1-etkinlik': 'Aile Buluşmaları',
+    'day2-gun': 'ÇARŞAMBA', 'day2-etkinlik': 'Çocuklara Özel Şov',
+    'day3-gun': 'PERŞEMBE', 'day3-etkinlik': 'DJ Gecesi · 21:00',
+    'day4-gun': 'CUMA', 'day4-etkinlik': 'Doğum Günü Kutlamaları',
+    'day5-gun': 'CUMARTESİ', 'day5-etkinlik': 'Özel Kutlamalar',
+    'day6-gun': 'PAZAR', 'day6-etkinlik': 'Evlilik Teklifi Anları',
   },
   en: {
     'nav-menu': 'MENU',
@@ -611,13 +620,13 @@ var translations = {
     'btn-menu-float': 'Explore Menu',
     'btn-rez-float': 'Make a Reservation',
     'wheel-title': 'OUR WEEKLY PROGRAM',
-    'day0-gun': 'MONDAY', 'day0-etkinlik': 'Live Music · 20:00',
-    'day1-gun': 'TUESDAY', 'day1-etkinlik': 'Cocktail Night · 19:00',
-    'day2-gun': 'WEDNESDAY', 'day2-etkinlik': 'Driving Range Tournament · 17:00',
-    'day3-gun': 'THURSDAY', 'day3-etkinlik': 'DJ Performance · 21:00',
-    'day4-gun': 'FRIDAY', 'day4-etkinlik': "Chef's Special Menu · 19:00",
-    'day5-gun': 'SATURDAY', 'day5-etkinlik': 'Live Music · 20:30',
-    'day6-gun': 'SUNDAY', 'day6-etkinlik': 'Family Brunch · 11:00',
+    'day0-gun': 'MONDAY', 'day0-etkinlik': 'An Elegant Dinner',
+    'day1-gun': 'TUESDAY', 'day1-etkinlik': 'Family Gatherings',
+    'day2-gun': 'WEDNESDAY', 'day2-etkinlik': "Kids' Special Show",
+    'day3-gun': 'THURSDAY', 'day3-etkinlik': 'DJ Night · 21:00',
+    'day4-gun': 'FRIDAY', 'day4-etkinlik': 'Birthday Celebrations',
+    'day5-gun': 'SATURDAY', 'day5-etkinlik': 'Special Celebrations',
+    'day6-gun': 'SUNDAY', 'day6-etkinlik': 'Proposal Moments',
   },
   ru: {
     'nav-menu': 'МЕНЮ',
@@ -646,13 +655,13 @@ var translations = {
     'btn-menu-float': 'Смотреть Меню',
     'btn-rez-float': 'Забронировать',
     'wheel-title': 'НАША НЕДЕЛЬНАЯ ПРОГРАММА',
-    'day0-gun': 'ПОНЕДЕЛЬНИК', 'day0-etkinlik': 'Живая музыка · 20:00',
-    'day1-gun': 'ВТОРНИК', 'day1-etkinlik': 'Коктейльный вечер · 19:00',
-    'day2-gun': 'СРЕДА', 'day2-etkinlik': 'Турнир на драйвинг-рендже · 17:00',
-    'day3-gun': 'ЧЕТВЕРГ', 'day3-etkinlik': 'Выступление DJ · 21:00',
-    'day4-gun': 'ПЯТНИЦА', 'day4-etkinlik': 'Особое меню от шефа · 19:00',
-    'day5-gun': 'СУББОТА', 'day5-etkinlik': 'Живая музыка · 20:30',
-    'day6-gun': 'ВОСКРЕСЕНЬЕ', 'day6-etkinlik': 'Семейный бранч · 11:00',
+    'day0-gun': 'ПОНЕДЕЛЬНИК', 'day0-etkinlik': 'Изысканный ужин',
+    'day1-gun': 'ВТОРНИК', 'day1-etkinlik': 'Семейные встречи',
+    'day2-gun': 'СРЕДА', 'day2-etkinlik': 'Шоу для детей',
+    'day3-gun': 'ЧЕТВЕРГ', 'day3-etkinlik': 'Вечер с DJ · 21:00',
+    'day4-gun': 'ПЯТНИЦА', 'day4-etkinlik': 'Дни рождения',
+    'day5-gun': 'СУББОТА', 'day5-etkinlik': 'Особые торжества',
+    'day6-gun': 'ВОСКРЕСЕНЬЕ', 'day6-etkinlik': 'Моменты предложения руки и сердца',
   },
   de: {
     'nav-menu': 'SPEISEKARTE',
@@ -681,13 +690,13 @@ var translations = {
     'btn-menu-float': 'Speisekarte Entdecken',
     'btn-rez-float': 'Jetzt Reservieren',
     'wheel-title': 'UNSER WOCHENPROGRAMM',
-    'day0-gun': 'MONTAG', 'day0-etkinlik': 'Live-Musik · 20:00',
-    'day1-gun': 'DIENSTAG', 'day1-etkinlik': 'Cocktailabend · 19:00',
-    'day2-gun': 'MITTWOCH', 'day2-etkinlik': 'Driving-Range-Turnier · 17:00',
-    'day3-gun': 'DONNERSTAG', 'day3-etkinlik': 'DJ-Auftritt · 21:00',
-    'day4-gun': 'FREITAG', 'day4-etkinlik': 'Spezialmenü des Küchenchefs · 19:00',
-    'day5-gun': 'SAMSTAG', 'day5-etkinlik': 'Live-Musik · 20:30',
-    'day6-gun': 'SONNTAG', 'day6-etkinlik': 'Familien-Brunch · 11:00',
+    'day0-gun': 'MONTAG', 'day0-etkinlik': 'Ein elegantes Abendessen',
+    'day1-gun': 'DIENSTAG', 'day1-etkinlik': 'Familientreffen',
+    'day2-gun': 'MITTWOCH', 'day2-etkinlik': 'Kindershow',
+    'day3-gun': 'DONNERSTAG', 'day3-etkinlik': 'DJ-Abend · 21:00',
+    'day4-gun': 'FREITAG', 'day4-etkinlik': 'Geburtstagsfeiern',
+    'day5-gun': 'SAMSTAG', 'day5-etkinlik': 'Besondere Feiern',
+    'day6-gun': 'SONNTAG', 'day6-etkinlik': 'Heiratsantrag-Momente',
   }
 };
 
